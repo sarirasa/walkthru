@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Ridho Ferdian & Sarirasa Group MIS Team">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>WALKTHRU - Home</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/floating-labels/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/js/manifest.json">
+    <!--<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#563d7c">-->
+    <link rel="mask-icon" href="/img/favicon.ico" color="#563d7c">
+    <link rel="icon" href="/img/favicon.ico">
+    <meta name="msapplication-config" content="/xml/browserconfig.xml">
+    <meta name="theme-color" content="#f5f5f5">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .custom-control-label{
+        font-size: 2rem;
+      }
+
+      /*
+      =====
+      LEVEL 1. CORE STYLES
+      =====
+      */
+
+      .toggle{
+        --uiToggleSize: var(--toggleSize, 20px);
+        --uiToggleIndent: var(--toggleIndent, .4em);
+        --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
+        --uiToggleColor: var(--toggleColor, #000);
+        --uiToggleDisabledColor: var(--toggleDisabledColor, #868e96);
+        --uiToggleBgColor: var(--toggleBgColor, #fff);
+        --uiToggleArrowWidth: var(--toggleArrowWidth, 2px);
+        --uiToggleArrowColor: var(--toggleArrowColor, #fff);
+
+        display: inline-block;
+        position: relative;
+      }
+
+      .toggle__input{
+        position: absolute;
+        left: -99999px;
+      }
+
+      .toggle__label{
+        display: inline-flex;
+        cursor: pointer;
+        min-height: var(--uiToggleSize);
+        padding-left: calc(var(--uiToggleSize) + var(--uiToggleIndent));
+      }
+
+      .toggle__label:before, .toggle__label:after{
+        content: "";
+        box-sizing: border-box;
+        width: 1em;
+        height: 1em;
+        font-size: var(--uiToggleSize);
+
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .toggle__label:before{
+        border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+        z-index: 2;
+      }
+
+      .toggle__input:disabled ~ .toggle__label:before{
+        border-color: var(--uiToggleDisabledColor);
+      }
+
+      .toggle__input:focus ~ .toggle__label:before{
+        box-shadow: 0 0 0 2px var(--uiToggleBgColor), 0 0 0px 4px var(--uiToggleColor);
+      }
+
+      .toggle__input:not(:disabled):checked:focus ~ .toggle__label:after{
+        box-shadow: 0 0 0 2px var(--uiToggleBgColor), 0 0 0px 4px var(--uiToggleColor);
+      }
+
+      .toggle__input:not(:disabled) ~ .toggle__label:after{
+        background-color: var(--uiToggleColor);
+        opacity: 0;
+      }
+
+      .toggle__input:not(:disabled):checked ~ .toggle__label:after{
+        opacity: 1;
+      }
+
+      .toggle__text{
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      /*
+      The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element toggle
+      */
+
+      .toggle__text:before{
+        content: "";
+        box-sizing: border-box;
+        width: 0;
+        height: 0;
+        font-size: var(--uiToggleSize);
+
+        border-left-width: 0;
+        border-bottom-width: 0;
+        border-left-style: solid;
+        border-bottom-style: solid;
+        border-color: var(--uiToggleArrowColor);
+
+        position: absolute;
+        top: .5428em;
+        left: .2em;
+        z-index: 3;
+
+        transform-origin: left top;
+        transform: rotate(-40deg) skew(10deg);
+      }
+
+      .toggle__input:not(:disabled):checked ~ .toggle__label .toggle__text:before{
+        width: .5em;
+        height: .25em;
+        border-left-width: var(--uiToggleArrowWidth);
+        border-bottom-width: var(--uiToggleArrowWidth);
+        will-change: width, height;
+        transition: width .1s ease-out .2s, height .2s ease-out;
+      }
+
+      /*
+      =====
+      LEVEL 2. PRESENTATION STYLES
+      =====
+      */
+
+      /*
+      The demo skin
+      */
+
+      .toggle__label:before, .toggle__label:after{
+        border-radius: 2px;
+      }
+
+      /*
+      The animation of switching states
+      */
+
+      .toggle__input:not(:disabled) ~ .toggle__label:before,
+      .toggle__input:not(:disabled) ~ .toggle__label:after{
+        opacity: 1;
+        transform-origin: center center;
+        will-change: transform;
+        transition: transform .2s ease-out;
+      }
+
+      .toggle__input:not(:disabled) ~ .toggle__label:before{
+        transform: rotateY(0deg);
+        transition-delay: .2s;
+      }
+
+      .toggle__input:not(:disabled) ~ .toggle__label:after{
+        transform: rotateY(90deg);
+      }
+
+      .toggle__input:not(:disabled):checked ~ .toggle__label:before{
+        transform: rotateY(-90deg);
+        transition-delay: 0s;
+      }
+
+      .toggle__input:not(:disabled):checked ~ .toggle__label:after{
+        transform: rotateY(0deg);
+        transition-delay: .2s;
+      }
+
+      .toggle__text:before{
+        opacity: 0;
+      }
+
+      .toggle__input:not(:disabled):checked ~ .toggle__label .toggle__text:before{
+        opacity: 1;
+        transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+      }
+
+      /*
+      =====
+      LEVEL 3. SETTINGS
+      =====
+      */
+
+      .toggle{
+        --toggleColor: #C79645;
+        --toggleBgColor: #C79645;
+        --toggleSize: 50px;
+      }
+
+      /*
+      =====
+      DEMO
+      =====
+      */
+
+      .page{
+        margin: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        order: 1;
+      }
+
+      .page__toggle{
+        font-size: 28px;
+        /*font-weight: 700;*/
+        color: black;
+      }
+
+      .page__toggle:nth-child(n+2){
+        margin-top: 0px;
+      }
+
+    </style>
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body oncontextmenu="return false;">
+    <div class="container mb-5">
+      <div class="py-0 mb-5 text-center">
+        <img class="d-block mx-auto mb-4" src="/img/logo_square.png" alt="" width="72" height="72">
+        <h2>Form Baru</h2>
+        <p class="lead">Silahkan mengisi form berikut dengan cara melakukan klik pada tulisan poin checklist atau pada kotak <i>checkbox</i> yang tersedia. <br><br>Harap diisi sesuai dengan kondisi di store terkait</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="badge badge-secondary badge-pill"></span>
+          </h4>
+
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0"> 1. SISTEM MANAGEMENT</h6>
+                <small class="text-muted"> 1.1 SISSTORE</small> <span class="text-muted"></span>
+                <br>
+                <small class="text-muted"> 1.2 SOP DAN TRAINING</small> <span class="text-muted"></span>
+                <br>
+                <small class="text-muted"> 1.3 OPERASIONAL</small> <span class="text-muted"></span>
+                <br>
+                <small class="text-muted">  1.4 POS DAN ORDERING SYSTEM</small> <span class="text-muted"></span>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0 text-secondary"> 2. QUALITY OF SERVICE</h6>
+                <small class="text-muted"> 2.1 STANDAR SERVICE</small> <span class="text-muted"></span>
+                <br>
+                <small class="text-muted"> 2.2 CLEANING</small> <span class="text-muted"></span>
+              </div>
+              <span class="text-muted"></span>
+            </li>
+          </ul>
+          <!--
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </div>
+          </form>-->
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3"> 1. SISTEM MANAGEMENT</h4>
+          <hr class="mb-4">
+          <form class="needs-validation" novalidate>
+
+            <div class="mb-3">
+              <h5 for="address">	 1.1 SISSTORE</h5>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox" id="checkboxtest">
+                <span class="toggle__label"><span class="toggle__text">Walktrough checklist</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Instore (ISP) dilaksanakan sesuai sistem</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Rush Chart (produk yang di buat sesuai rush chart)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Up load sales mid day</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Waste produk</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Limit Item</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Sold Out Produk</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Index training Store ( Min 60 %)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Packing List Mother Store</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Daily Journal (Komunikasi dua arah)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Kartu Stock</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Ramin Jatis</span></span>
+              </label>
+            </div>
+            <hr class="mb-4">
+
+            <div class="mb-0">
+              <h5 for="address">	 1.2 SOP DAN TRAINING</h5>
+            </div>
+            <div class="mb-3">
+              <h6 for="address">	 1.2.1 CHEATSHEET</h6>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Racikan</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Masakan</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Bakaran</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Minuman</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Takeaway kerupuk</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Cooking Time</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Microwave (menumaster / Panasonic)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Cuci tangan</span></span>
+              </label>
+            </div>
+
+            <div class="mb-3">
+              <h6 for="address">	 1.2.2 TRAINING</h6>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Index training Store ( Min 60 %)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Jadwal Training reguler dikirim setiap minggu</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Melakukan validasi crew</span></span>
+              </label>
+            </div>
+            <hr class="mb-4">
+
+            <div class="mb-3">
+              <h5 for="address">	 1.3 OPERASIONAL</h5>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Scan barcode sistem</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Visit table</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Handling Complain</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Prosedur filtering di lakukan 2 x sehari</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Activity Plan Update dan Terpasang</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Shift Plan</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Jadwal Kebersihan update dan terpasang</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Jadwal karywan update dan terpasang</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Check Bako</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Form Checklist CCTV Berjalan dengan baik</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Kunci Brankas dan Drawer harus dipegang PIC</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Pastikan Kran Utama air bersih tertutup saat closing</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Pastikan lampu mati saat closing</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Prosedur last order sebelum close 20 menit</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Prosedur pre close setelah last order 10 menit</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Valve gas utama (ON saat opening dan OFF saat closing)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Pintu Belakang/ Back Door harus selalu dikunci</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Brankas dan Drawer POS harus selalu dikunci</span></span>
+              </label>
+            </div>
+            <div class="page__toggle mb-3">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Semua valve sink dalam keadaan mati saat closing</span></span>
+              </label>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="mb-3">
+              <h5 for="address">	 1.4 POS DAN ORDERING SYSTEM</h5>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Captain Order tersedia ( Digunakan saat PDA mati)</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Register dan barcode Printer</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Captain Order 3 Play tersedia</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">P D A</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Kertas Thermal</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Barcode Printer</span></span>
+              </label>
+            </div>
+            <div class="page__toggle">
+              <label class="toggle">
+                <input class="toggle__input" type="checkbox">
+                <span class="toggle__label"><span class="toggle__text">Nota Sementara tersedia</span></span>
+              </label>
+            </div>
+            <hr class="mb-4">
+
+            <button class="btn btn-lg btn-primary btn-block" style="background-color:#C79645; border-color:white" type="submit">Berikutnya</button>
+          </form>
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br>
+    </div>
+
+<nav class="navbar fixed-bottom navbar-expand-md navbar-dark" style="color:#f5f5f5; background-color: #C79645;">
+  <a href="home.html"><img src="/img/icon.png" height="40px"></a>
+  <a class="navbar-brand" href="home.html">WALKTHRU</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="home.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="form.html">Form Baru<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="riwayat.html">Riwayat</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="faq.html">FAQ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Keluar</a>
+      </li>
+      <!--
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+      <li class="nav-item dropup">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown10">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      -->
+    </ul>
+  </div>
+</nav>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+      var checkbox = document.getElementById("toggle__input");
+      checkbox.indeterminate = true;
+
+      var checkbox2 = document.getElementById("checkboxtest");
+      checkbox2.indeterminate = true;
+    </script>
+  </body>
+</html>

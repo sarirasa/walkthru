@@ -1,0 +1,22 @@
+
+{
+  "name": "Sarirasa Walkthru",
+  "short_name": "Walkthru",
+  "icons": [
+    {
+      "src": "/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "../index.html?source=pwa",
+  "theme_color": "#f5f5f5",
+  "background_color": "#f5f5f5",
+  "display": "standalone",
+  "orientation": "portrait"
+}
